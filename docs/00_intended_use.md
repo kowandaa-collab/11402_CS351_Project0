@@ -1,29 +1,37 @@
-# Intended Use
+# Intended Use - Two Sum Implementation
 
 ## Project Overview
-This CS351 Project 0 implements the Two Sum algorithm as an introductory project for the Computer Science 351 course.
+This project implements solutions to the classic "Two Sum" problem, a fundamental computer science challenge that requires finding two numbers in an array that add up to a target sum.
 
-## Primary Purpose
-The intended use of this project is to:
-- Implement an efficient solution to the Two Sum problem
-- Demonstrate algorithm optimization techniques
-- Practice applying hash table data structures in problem-solving
-- Establish foundational understanding of time/space complexity analysis
+## Problem Statement
+Given an array of integers and a target value, find and return the indices of the two numbers that add up to the target. Each input has exactly one solution, and the same element cannot be used twice.
 
-## Scope
-- Educational purposes for CS351 coursework
-- Implementation of the Two Sum algorithm with multiple approaches
-- Practice with version control and collaborative development
-- Algorithmic problem-solving in a real-world context
+## Intended Use Cases
 
-## Target Users
-- CS351 students learning algorithm design
-- Course instructors and teaching assistants
-- Project collaborators in the kowandaa-collab organization
-- Developers seeking reference implementations
+### 1. **Algorithm Learning**
+- Educational reference for understanding different problem-solving approaches
+- Demonstrates hash map/dictionary optimization techniques
+- Shows trade-offs between time and space complexity
 
-## Key Deliverables
-- Well-documented source code with multiple Two Sum solutions
-- Clear project documentation including algorithm explanation
-- Functional implementation with optimal time complexity
-- Test cases demonstrating correctness and performance
+### 2. **Interview Preparation**
+- Common technical interview question across major tech companies
+- Illustrates ability to optimize from brute force to efficient solutions
+- Tests understanding of data structures and algorithm optimization
+
+### 3. **Performance Analysis**
+- Comparison of multiple solution implementations:
+  - Brute force approach (O(n²) time)
+  - Hash map approach (O(n) time, O(n) space)
+  - Sorted array approach (O(n log n) time, O(1) space)
+
+## Key Objectives
+- Implement efficient and readable code
+- Provide multiple solution approaches
+- Include comprehensive test cases
+- Document time and space complexity for each solution
+- Enable performance benchmarking
+
+## Target Audience
+- Computer Science students
+- Job candidates preparing for technical interviews
+- Developers learning algorithm optimization techniques
