@@ -11,6 +11,10 @@ static void fail(const std::string& testName, const std::string& msg) {
     std::cerr << "[FAIL] " << testName << ": " << msg << "\n";
 }
 
+static void pass(const std::string& testName) {
+    std::cout << "[PASS] " << testName << "\n";
+}
+
 static bool isAscending(const std::vector<int>& idx) {
     return idx.size() != 2 || idx[0] <= idx[1];
 }
@@ -76,6 +80,8 @@ static int runOne(const std::string& testName,
                   bool solutionMustExist) {
     int failures = 0;
 
+    std::cout << "Running: " << testName << "\n";
+
     const bool anySolution = hasAnySolution(nums, target);
     if (solutionMustExist && !anySolution) {
         fail(testName, "test is marked solutionMustExist but input has no solution");
@@ -90,9 +96,22 @@ static int runOne(const std::string& testName,
     const auto ansA = TwoSumArray(nums, target);
     const auto ansH = TwoSumHashTable(nums, target);
 
-    if (!checkAnyValidPair(nums, target, ansA, solutionMustExist, testName + " / TwoSumArray")) failures++;
-    if (!checkAnyValidPair(nums, target, ansH, solutionMustExist, testName + " / TwoSumHashTable")) failures++;
+    const std::string nameA = testName + " / TwoSumArray";
+    const std::string nameH = testName + " / TwoSumHashTable";
 
+    if (!checkAnyValidPair(nums, target, ansA, solutionMustExist, nameA)) {
+        failures++;
+    } else {
+        pass(nameA);
+    }
+
+    if (!checkAnyValidPair(nums, target, ansH, solutionMustExist, nameH)) {
+        failures++;
+    } else {
+        pass(nameH);
+    }
+
+    std::cout << "\n";
     return failures == 0 ? 0 : 1;
 }
 

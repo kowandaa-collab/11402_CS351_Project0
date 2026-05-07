@@ -20,5 +20,7 @@ jobs:
 
       - name: Run tests
         run: |
+          echo "::group::Unit test output"
           ./tests_run
+          echo "::endgroup::"
 
