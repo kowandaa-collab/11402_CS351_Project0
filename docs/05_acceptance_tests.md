@@ -1,52 +1,23 @@
 # Acceptance Tests - Two Sum Implementation
 
-## Test Case 1: Basic Valid Pair
-**Input:** `nums = [2, 7, 11, 15]`, `target = 9`
-**Expected Output:** `[0, 1]`
-**Status:** ✓ Pass
-**Description:** Find two numbers that add up to target in simple array
+This project accepts **any valid pair of indices** (as long as the indices are distinct, in-range, and sum to the target).
+Per the SRS, when a pair is returned, indices must be in **ascending order**.
 
-## Test Case 2: Different Valid Pair
-**Input:** `nums = [3, 2, 4]`, `target = 6`
-**Expected Output:** `[1, 2]`
-**Status:** ✓ Pass
-**Description:** Verify correct indices are returned for different pair
+## simple case
+- **Input**: `nums = [2, 7, 11, 15]`, `target = 9`
+- **Expected**: any valid pair, e.g. `[0, 1]`
 
-## Test Case 3: Large Numbers
-**Input:** `nums = [1000000, 2000000, 3000000]`, `target = 5000000`
-**Expected Output:** `[1, 2]`
-**Status:** ✓ Pass
-**Description:** Handle large integer values correctly
+## edge case
+- **Input**: `nums = [-1, -2, -3, 5, 10]`, `target = 8`
+- **Expected**: any valid pair, e.g. `[1, 4]` (because `-2 + 10 = 8`)
 
-## Test Case 4: Negative Numbers
-**Input:** `nums = [-1, -2, -3, 5, 10]`, `target = 8`
-**Expected Output:** `[3, 4]`
-**Status:** ✓ Pass
-**Description:** Correctly handle negative numbers in array
+## single amount
+- **Input**: `nums = [5]`, `target = 10`
+- **Expected**: `[]` (no pair exists)
 
-## Test Case 5: Duplicate Values
-**Input:** `nums = [1, 1, 1, 1]`, `target = 2`
-**Expected Output:** `[0, 1]`
-**Status:** ✓ Pass
-**Description:** Handle arrays with duplicate values
-
-## Test Case 6: Minimum Array Size
-**Input:** `nums = [1, 2]`, `target = 3`
-**Expected Output:** `[0, 1]`
-**Status:** ✓ Pass
-**Description:** Minimum valid input size (exactly 2 elements)
-
-## Test Case 7: No Valid Pair
-**Input:** `nums = [1, 2, 3]`, `target = 100`
-**Expected Output:** `[]` or `None`
-**Status:** ✓ Pass
-**Description:** Return empty/null when no pair exists
-
-## Test Case 8: Same Number Twice Not Allowed
-**Input:** `nums = [5, 5]`, `target = 10`
-**Expected Output:** `[0, 1]`
-**Status:** ✓ Pass
-**Description:** Same element at different indices can be used
+## stress case
+- **Input**: `n = 10,000` (engineered so exactly one pair sums to the target)
+- **Expected**: the engineered indices (in ascending order)
 
 ## Performance Requirements
 - Time Complexity: O(n) using hash map approach

@@ -1,61 +1,61 @@
 # Test Plan for Two Sum Implementation
 
 ## Overview
-This document outlines the test strategy for the Two Sum algorithm implementation project.
+This document describes how we test the Two Sum implementations:
+
+- `TwoSumArray(nums, target)` (brute force)
+- `TwoSumHashTable(nums, target)` (hash table)
 
 ## Test Objectives
-- Verify correct identification of two numbers that sum to target
-- Validate edge cases and boundary conditions
-- Ensure solution meets time and space complexity requirements
-- Test performance with various input sizes
+- Verify correctness (indices sum to target, distinct indices)
+- Validate edge cases (duplicates, negatives, no solution)
+- Ensure outputs follow the SRS rule: **indices in ascending order**
+- Confirm the hash-table solution performs well for \(n=10{,}000\)
 
-## Test Cases
+## Correctness Requirements (Pass Conditions)
+For an input `(nums, target)`:
+
+- If a solution exists, the function returns a vector of **two indices** `[i, j]` such that:
+  - `0 <= i < nums.size()` and `0 <= j < nums.size()`
+  - `i != j`
+  - `nums[i] + nums[j] == target`
+  - `i < j` (ascending order)
+- If no solution exists (or input is too small), the function returns `[]` (empty vector).
+
+## Test Approach
+We use a small self-contained C++ test runner in `tests/tests.cpp` (no external frameworks):
+
+- Each test calls **both implementations**.
+- For tests where any valid answer is acceptable, we validate the returned indices by checking the sum and bounds (not by matching one exact pair).
+- The program exits with:
+  - `0` if all tests pass
+  - `1` if any test fails (CI will mark the workflow as failed)
 
 ### Basic Functionality Tests
 
-| Test ID | Description | Input | Expected Output | Status |
-|---------|-------------|-------|-----------------|--------|
-| TC-001 | Normal case - two distinct numbers | nums=[2,7,11,15], target=9 | [0,1] | |
-| TC-002 | Two numbers at different positions | nums=[3,2,4], target=6 | [1,2] | |
-| TC-003 | Negative numbers | nums=[-1,0,1,2,-1,-4], target=-1 | [0,4] or [0,2] | |
+The core “categories” we keep are:
 
-### Edge Cases
+- **simple case**
+- **edge case**
+- **single amount**
+- **stress case**
 
-| Test ID | Description | Input | Expected Output | Status |
-|---------|-------------|-------|-----------------|--------|
-| TC-004 | Minimum array (exactly 2 elements) | nums=[1,2], target=3 | [0,1] | |
-| TC-005 | Large numbers | nums=[1000000,2000000], target=3000000 | [0,1] | |
-| TC-006 | All negative numbers | nums=[-5,-3,-2], target=-8 | [0,2] | |
-| TC-007 | Zero in array | nums=[0,5,-1], target=5 | [0,1] | |
-| TC-008 | Same number twice needed | nums=[2,2], target=4 | [0,1] | |
-
-### Invalid Input Tests
-
-| Test ID | Description | Input | Expected Behavior | Status |
-|---------|-------------|-------|-------------------|--------|
-| TC-009 | No valid pair exists | nums=[1,2,3], target=10 | No output or null | |
-| TC-010 | Empty array | nums=[], target=5 | Error/Exception | |
-| TC-011 | Single element | nums=[5], target=10 | Error/Exception | |
-
-### Performance Tests
-
-| Test ID | Description | Input Size | Expected Time | Status |
-|---------|-------------|-----------|----------------| --------|
-| TC-012 | Large input - 10,000 elements | n=10,000 | O(n) or O(n log n) | |
-| TC-013 | Large input - 100,000 elements | n=100,000 | O(n) or O(n log n) | |
+These map to concrete test vectors inside `tests/tests.cpp`.
 
 ## Acceptance Criteria
-- All basic functionality tests pass
-- At least 80% of edge case tests pass
-- Solution complexity is O(n) time or O(n log n) at worst
-- No runtime errors on valid inputs
-- Graceful error handling for invalid inputs
+- `tests/tests.cpp` reports **ALL TESTS PASSED**
+- GitHub Actions workflow completes successfully on push/PR
 
 ## Test Environment
-- Language: [Specify: Python/Java/C++/etc]
-- Testing Framework: [Specify: unittest/pytest/JUnit/etc]
-- Platform: Windows/Linux/macOS
+- Language: C++20
+- Platform: Local Windows (MSYS2/MinGW-w64) and CI on Ubuntu
+- Test runner: `tests/tests.cpp` (no external dependency)
 
 ## Notes
-- Tests should validate both algorithm correctness and performance
-- Input validation and error handling are critical components
+- To run tests locally:
+
+```bash
+g++ -std=c++20 -O2 -Wall -Wextra -pedantic -o tests_run src/twosum.cpp tests/tests.cpp
+./tests_run
+```
+
